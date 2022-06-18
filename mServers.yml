@@ -5,6 +5,10 @@ Parameters:
   EnvironmentName:
     Description: An rnvironment name that will be prefixed for the resources to be created
     Type: String
+  Keypair:
+    Description: The keypair to use for your instances
+    Type: String
+    Default: muawiyya_keypair
 
 Resources:
   mLBSecGroup:
@@ -58,7 +62,7 @@ Resources:
           curl http://mudagram.s3-website-us-east-1.amazonaws.com/index.html > index.html
       ImageId: ami-0729e439b6769d6ab
       IamInstanceProfile: !Ref mInstanceProfile
-      KeyName: muawiyya_keypair
+      KeyName: !Ref Keypair
       SecurityGroups:
         - Ref: mWebServerSecGroup
       InstanceType: t3.medium
